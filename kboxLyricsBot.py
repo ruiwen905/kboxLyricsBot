@@ -1,15 +1,22 @@
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackQueryHandler
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from bs4 import BeautifulSoup
 import requests
 
 def start(bot, update):
-    update.message.reply_text(
-        """"Hello {}, \nPlease enter the singer followed by the title of the song. \ne.g. the chainsmokers closer
-        Other features includes:
-        /hits -- view top 10 songs
-        /artists -- view top artists
-        
-        /cancel - cancel the current operation """.format(update.message.from_user.first_name))
+    update.message.reply_text(start_message.format(update.message.from_user.first_name))
+    keyboard = [[InlineKeyboardButton("Top Hits", callback_data='Top')],
+                [InlineKeyboardButton("Top Artists", callback_data='')]
+                ]
+
+    reply_markup = InlineKeyboardMarkup(keyboard)
+
+    update.message.reply_text(time_message, reply_markup=reply_markup)
+                              
+start_message ="""Hello {}
+    Please enter the singer followed by the title of the song. 
+    e.g. the chainsmokers closer
+    Add @youtube and sign in to your youtube account by entering /auth and /setting to get your respective song playlist! """
 
 def hello(bot, update):
     update.message.reply_text(
