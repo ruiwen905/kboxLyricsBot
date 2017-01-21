@@ -36,22 +36,29 @@ def generateSiteFromInput(bot, update):
 	finalUrl = rootPage + processedMessage + "-lyrics"
 	return finalUrl
 	
-def getSongLyrics(bot, update):
+def getRawLyrics(bot, update):
 	finalUrl = generateSiteFromInput(bot, update)
-	update.message.reply_text(
-        'Your Url is {}'.format(finalUrl))
-		
+			
 	requestResult = requests.get(finalUrl)
 	requestHtmlContent = requestResult.content
 	soup = BeautifulSoup(requestHtmlContent, "html.parser")
+	rawLyrics = soup.lyrics
+	return rawLyrics
 	
+def displayLyrics(bot, update):
+	rawLyrics = getRawLyrics(bot, update)
+	for tag in rawLyrics.find_all('a'):
+		tag.replaceWith(tag.text)
+	
+	finalLyrics = rawLyrics.get_text().rstrip()
+	update.message.reply_text(finalLyrics)
 	
 
 updater = Updater('329555371:AAG6VH8AiLUJJCF5Vp1tGcJ6TFymho-_ArU')
 
 updater.dispatcher.add_handler(CommandHandler('start', start))
 
-updater.dispatcher.add_handler(MessageHandler(Filters.text, getSongLyrics))
+updater.dispatcher.add_handler(MessageHandler(Filters.text, displayLyrics))
 
 
 
