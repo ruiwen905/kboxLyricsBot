@@ -28,6 +28,11 @@ def getSongLyrics(bot, update):
 	finalUrl = generateSiteFromInput(bot, update)
 	update.message.reply_text(
         'Your Url is {}'.format(finalUrl))
+		
+	requestResult = requests.get(finalUrl)
+	requestHtmlContent = requestResult.content
+	soup = BeautifulSoup(requestHtmlContent, "html.parser")
+	
 	
 
 updater = Updater('329555371:AAG6VH8AiLUJJCF5Vp1tGcJ6TFymho-_ArU')
@@ -37,12 +42,7 @@ updater.dispatcher.add_handler(CommandHandler('hello', hello))
 
 updater.dispatcher.add_handler(MessageHandler(Filters.text, getSongLyrics))
 
-page = "https://genius.com/"
-requestResult = requests.get(page)
 
-requestHtmlContent = requestResult.content
-
-soup = BeautifulSoup(requestHtmlContent, "html.parser")
 
 updater.start_polling()
 updater.idle()
