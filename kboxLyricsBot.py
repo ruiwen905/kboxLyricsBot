@@ -15,15 +15,27 @@ def hello(bot, update):
     update.message.reply_text(
         'Hello {}'.format(update.message.from_user.first_name))
 		
-def getSongTitle(bot, update):
-	print(update.message.text)
+def generateSiteFromInput(bot, update):
+	inputMessage = update.message.text
+	inputMessageTrim = inputMessage.strip()
+	processedMessage = inputMessageTrim.replace(' ', '-')
+	
+	rootPage = "https://genius.com/"
+	finalUrl = rootPage + processedMessage
+	return finalUrl
+	
+def getSongLyrics(bot, update):
+	finalUrl = generateSiteFromInput(bot, update)
+	update.message.reply_text(
+        'Your Url is {}'.format(finalUrl))
+	
 
 updater = Updater('329555371:AAG6VH8AiLUJJCF5Vp1tGcJ6TFymho-_ArU')
 
 updater.dispatcher.add_handler(CommandHandler('start', start))
 updater.dispatcher.add_handler(CommandHandler('hello', hello))
 
-updater.dispatcher.add_handler(MessageHandler(Filters.text, getSongTitle))
+updater.dispatcher.add_handler(MessageHandler(Filters.text, getSongLyrics))
 
 page = "https://genius.com/"
 requestResult = requests.get(page)
