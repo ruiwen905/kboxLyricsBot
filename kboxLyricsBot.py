@@ -21,7 +21,7 @@ def generateSiteFromInput(bot, update):
 	processedMessage = inputMessageTrim.replace(' ', '-')
 	
 	rootPage = "https://genius.com/"
-	finalUrl = rootPage + processedMessage
+	finalUrl = rootPage + processedMessage + "-lyrics"
 	return finalUrl
 	
 def getSongLyrics(bot, update):
