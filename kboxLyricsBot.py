@@ -4,8 +4,8 @@ from bs4 import BeautifulSoup
 import requests
 
 #Global variables
-rootPage = "https://genius.com/"
 botToken = "329555371:AAG6VH8AiLUJJCF5Vp1tGcJ6TFymho-_ArU"
+rootPage = "https://genius.com/"
 
 def start(bot, update):
     keyboard = [[InlineKeyboardButton("Top Hits", callback_data='Top Hits')],
