@@ -4,23 +4,28 @@ from bs4 import BeautifulSoup
 import requests
 
 def start(bot, update):
-    update.message.reply_text(start_message.format(update.message.from_user.first_name))
-    keyboard = [[InlineKeyboardButton("Top Hits", callback_data='Top')],
-                [InlineKeyboardButton("Top Artists", callback_data='')]
-                ]
+    keyboard = [[InlineKeyboardButton("Top Hits", callback_data='Top Hits')],
+                [InlineKeyboardButton("Top Artists", callback_data='Top Artists')]]
 
     reply_markup = InlineKeyboardMarkup(keyboard)
+    update.message.reply_text(start_message.format(update.message.from_user.first_name),reply_markup=reply_markup)
 
-    update.message.reply_text(time_message, reply_markup=reply_markup)
-                              
 start_message ="""Hello {}
-    Please enter the singer followed by the title of the song. 
-    e.g. the chainsmokers closer
-    Add @youtube and sign in to your youtube account by entering /auth and /setting to get your respective song playlist! """
+Please enter the singer followed by the title of the song. 
+e.g. the chainsmokers closer
+To get your youtube playlist, 
+1. Add @youtube
+2. Sign in to your youtube account by entering /auth 
+3. Enter /setting 
+4. Toggle to 'Suggest liked video' button
+5. Click 'Save & go to chat' button """
 
-def hello(bot, update):
-    update.message.reply_text(
-        'Hello {}'.format(update.message.from_user.first_name))
+def button(bot, update):
+    query = update.callback_query
+
+    bot.editMessageText(text="Selected option: %s" % query.data,
+                        chat_id=query.message.chat_id,
+                        message_id=query.message.message_id)
 		
 def generateSiteFromInput(bot, update):
 	inputMessage = update.message.text
@@ -45,7 +50,6 @@ def getSongLyrics(bot, update):
 updater = Updater('329555371:AAG6VH8AiLUJJCF5Vp1tGcJ6TFymho-_ArU')
 
 updater.dispatcher.add_handler(CommandHandler('start', start))
-updater.dispatcher.add_handler(CommandHandler('hello', hello))
 
 updater.dispatcher.add_handler(MessageHandler(Filters.text, getSongLyrics))
 
