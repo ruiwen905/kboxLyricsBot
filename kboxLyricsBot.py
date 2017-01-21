@@ -3,6 +3,10 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from bs4 import BeautifulSoup
 import requests
 
+#Global variables
+rootPage = "https://genius.com/"
+botToken = "329555371:AAG6VH8AiLUJJCF5Vp1tGcJ6TFymho-_ArU"
+
 def start(bot, update):
     keyboard = [[InlineKeyboardButton("Top Hits", callback_data='Top Hits')],
                 [InlineKeyboardButton("Top Artists", callback_data='Top Artists')]]
@@ -32,7 +36,6 @@ def generateSiteFromInput(bot, update):
 	inputMessageTrim = inputMessage.strip()
 	processedMessage = inputMessageTrim.replace(' ', '-')
 	
-	rootPage = "https://genius.com/"
 	finalUrl = rootPage + processedMessage + "-lyrics"
 	return finalUrl
 	
@@ -54,7 +57,7 @@ def displayLyrics(bot, update):
 	update.message.reply_text(finalLyrics)
 	
 
-updater = Updater('329555371:AAG6VH8AiLUJJCF5Vp1tGcJ6TFymho-_ArU')
+updater = Updater(botToken)
 
 updater.dispatcher.add_handler(CommandHandler('start', start))
 
