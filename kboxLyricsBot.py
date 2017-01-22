@@ -30,6 +30,12 @@ def button(bot, update):
     bot.editMessageText(text="Selected option: %s" % query.data,
                         chat_id=query.message.chat_id,
                         message_id=query.message.message_id)
+						
+def getSoupObject(url):
+	requestResult = requests.get(url)
+	requestHtmlContent = requestResult.content
+	soupObj = BeautifulSoup(requestHtmlContent, "html.parser")
+	return soupObj
 		
 def generateSiteFromInput(bot, update):
 	inputMessage = update.message.text
@@ -41,10 +47,7 @@ def generateSiteFromInput(bot, update):
 	
 def getRawLyrics(bot, update):
 	finalUrl = generateSiteFromInput(bot, update)
-			
-	requestResult = requests.get(finalUrl)
-	requestHtmlContent = requestResult.content
-	soup = BeautifulSoup(requestHtmlContent, "html.parser")
+	soup = getSoupObject(finalUrl)		
 	rawLyrics = soup.lyrics
 	return rawLyrics
 	
