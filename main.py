@@ -2,10 +2,11 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, Callb
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from bs4 import BeautifulSoup
 import requests
+import os
 
 #Global variables
-botToken = "329555371:AAG6VH8AiLUJJCF5Vp1tGcJ6TFymho-_ArU"
-rootPage = "https://genius.com/"
+botToken = os.environ['BOT_TOKEN']
+rootPage = os.environ['LYRICS_SOURCE_URL']
 
 def start(bot, update):
     keyboard = [[InlineKeyboardButton("Top Hits", callback_data='Top Hits')],
