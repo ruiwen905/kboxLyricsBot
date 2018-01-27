@@ -51,3 +51,8 @@ You may want to hide your bot token from the public <br>
 Navigate to the "Settings" tab in the dashboard <br>
 Insert it here <br>
 <img src="images\config_vars.png"><br>
+To access these variables:
+```python
+import os
+botToken = os.environ['BOT_TOKEN']
+```
