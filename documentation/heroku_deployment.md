@@ -16,7 +16,7 @@ $ git clone https://github.com/ruiwen905/kboxLyricsBot.git
 In the same directory as your cloned repository, create a python file named "main.py" (Can be any name)
 
 ### Create a Procfile
-A file that describes how your application is going to run. <br>
+A file in the root directory that describes the command to start your app. <br>
 To run a websever on Heroku, add this line to the file:
 ```
 web: python main.py
@@ -25,7 +25,8 @@ It is similar to telling Heroku to run the command ```python main.py``` on the c
 *NOTE: Do **NOT** add any extension behind. The name of this file should exactly be "Procfile"
 
 ### Create a requirement text file
-A file that contains a list of packages to install. <br>
+A file that contains a list of dependencies to install. <br>
+When your app is deployed, Heroku will read this file and installs these Python dependencies. <br>
 You can do this by:
 ```
 $ pip freeze > requirements.txt
