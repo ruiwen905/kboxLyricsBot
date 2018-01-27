@@ -42,6 +42,7 @@ From the dashboard, navigate to the "Deploy" tab <br>
 Select GitHub as the deployment method <br>
 Insert the URL to your GitHub repository <br>
 Set Automatic Deploys <br>
+<img src="images\deployment_github.png"><br>
 Heroku will now deploy a new version of your app on every push to GitHub ```master```
 
 ### Config Vars
