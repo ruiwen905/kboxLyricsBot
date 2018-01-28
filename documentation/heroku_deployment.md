@@ -57,3 +57,12 @@ To access these variables:
 import os
 botToken = os.environ['BOT_TOKEN']
 ```
+
+### Dyno Settings
+To turn on the dynos, navigate to the "Resources" tab in the dashboard <br>
+<img src="images\dyno_setting.png"><br>
+You can also turn it on using the CLI <br>
+```
+$ heroku ps:scale worker=1
+```
+ 
