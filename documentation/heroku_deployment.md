@@ -17,12 +17,13 @@ In the same directory as your cloned repository, create a python file named "mai
 
 ### Create a Procfile
 A file that describes how your application is going to run. <br>
-To run a websever on Heroku, add this line to the file:
+To run on Heroku, add this line to the file:
 ```
-web: python main.py
+worker: python main.py
 ```
 It is similar to telling Heroku to run the command ```python main.py``` on the console <br>
 *NOTE: Do **NOT** add any extension behind. The name of this file should exactly be "Procfile"
+*NOTE: If you use ```web: python main.py```, you may encounter the error ```Error R10 (Boot timeout) -> Web process failed to bind to $PORT within 60 seconds of launch```
 
 ### Create a requirement text file
 A file that contains a list of packages to install. <br>
