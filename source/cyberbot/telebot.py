@@ -5,8 +5,6 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from managers.callbackquery_manager import CallbackQueryManager
 from managers.inlinequery_manager import InlineQueryManager
 
-from reference.genius import Genius
-
 
 class Telebot:
     def __init__(self, bot_token):
@@ -21,9 +19,6 @@ class Telebot:
                     [InlineKeyboardButton("How to view YouTube Playlist", callback_data=CallbackQueryManager.INSTRUCT_VIEW_YOUTUBE_PLAYLIST)]]
         reply_markup = InlineKeyboardMarkup(keyboard)
         update.message.reply_text(start_message.format(update.message.from_user.first_name), reply_markup=reply_markup)
-
-    def display(self, bot, update):
-        print("===display===")
 
     def manage_callbacks(self, bot, update):
         callback_query_manager = CallbackQueryManager(bot, update)
