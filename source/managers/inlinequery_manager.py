@@ -15,9 +15,7 @@ class InlineQueryManager:
         result_song_list = ReferenceManager.get_song_list(song_to_search)
         result_display_list = []
         i = 0
-        print(result_song_list)
         for song in result_song_list:
-            print(song.title)
             result_display_list.append(InlineQueryResultArticle(id=i, title=song.title, input_message_content=InputTextMessageContent(song.url), url=song.url, description=song.artist, thumb_url=song.thumbnail_url, thumb_height=640, thumb_width=640))
             i += 1
         self.inline_query.answer(results=result_display_list)
