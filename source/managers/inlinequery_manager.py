@@ -15,6 +15,6 @@ class InlineQueryManager:
         result_display_list = []
         i = 0
         for song in result_song_list:
-            result_display_list.append(InlineQueryResultArticle(id=i, title=song.title, input_message_content=InputTextMessageContent(song.url), url=song.url, description=song.artist, thumb_url=song.thumbnail_url, thumb_height=640, thumb_width=640))
+            result_display_list.append(InlineQueryResultArticle(id=i, title=song.title, input_message_content=InputTextMessageContent(song.url), hide_url=True, url=song.url, description=song.artist, thumb_url=song.thumbnail_url, thumb_height=640, thumb_width=640))
             i += 1
         self.inline_query.answer(results=result_display_list)
