@@ -1,9 +1,11 @@
 from telegram.ext import Updater, Filters
-from telegram.ext import CommandHandler, CallbackQueryHandler, MessageHandler, InlineQueryHandler
+from telegram.ext import CommandHandler, CallbackQueryHandler, InlineQueryHandler, MessageHandler
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 
 from managers.callbackquery_manager import CallbackQueryManager
 from managers.inlinequery_manager import InlineQueryManager
+
+from reference.genius import Genius
 
 
 class Telebot:
@@ -21,7 +23,7 @@ class Telebot:
         update.message.reply_text(start_message.format(update.message.from_user.first_name), reply_markup=reply_markup)
 
     def display(self, bot, update):
-        update.message.reply_text("Type @kboxlyricsbot <song_name>")
+        print("===display===")
 
     def manage_callbacks(self, bot, update):
         callback_query_manager = CallbackQueryManager(bot, update)
@@ -38,7 +40,7 @@ class Telebot:
         updater.dispatcher.add_handler(CommandHandler('start', self.command_start))
 
         # Message Handler
-        updater.dispatcher.add_handler(MessageHandler(Filters.text, self.display))
+        # updater.dispatcher.add_handler(MessageHandler(Filters.text, self.display))
 
         # Callback Handler
         updater.dispatcher.add_handler(CallbackQueryHandler(self.manage_callbacks))

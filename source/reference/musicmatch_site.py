@@ -13,6 +13,7 @@ class MusicMatch:
     def get_soup_object(url):
         request_result = requests.get(url)
         request_html_content = request_result.content
+        print('html', request_html_content)
         soup_obj = BeautifulSoup(request_html_content, "html.parser")
         return soup_obj
 
@@ -37,13 +38,13 @@ class MusicMatch:
     #     final_lyrics = raw_lyrics.get_text().rstrip()
     #     return final_lyrics
 
-    @staticmethod
-    def get_list_lyrics_with_song_title(song_title):
-        url__of_site_to_scrap = MusicMatch.SEARCH_URL + Formatter.get_percent_encoding_from_string(song_title)
-        # soup = MusicMatch.get_soup_object(url__of_site_to_scrap)
-        # print(soup)
-        return
-
-    @staticmethod
-    def temp_method(song_name):
-        return MusicMatch.SEARCH_URL + Formatter.get_percent_encoding_from_string(song_name)
+    # @staticmethod
+    # def get_list_lyrics_with_song_title(song_title):
+    #     url__of_site_to_scrap = MusicMatch.SEARCH_URL + Formatter.get_percent_encoding_from_string(song_title)
+    #     soup = MusicMatch.get_soup_object(url__of_site_to_scrap)
+    #     # print(soup)
+    #     return url__of_site_to_scrap
+    #
+    # @staticmethod
+    # def temp_method(song_name):
+    #     return MusicMatch.SEARCH_URL + Formatter.get_percent_encoding_from_string(song_name)

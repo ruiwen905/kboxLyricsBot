@@ -1,10 +1,10 @@
-import os
+from utilities.keys import Keys
 
 from cyberbot.telebot import Telebot
 
 
 def main():
-    telebot = Telebot(os.environ['BOT_TOKEN'])
+    telebot = Telebot(Keys.BOT_TOKEN)
     telebot.run_update()
 
 
