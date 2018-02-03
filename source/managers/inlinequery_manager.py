@@ -5,7 +5,6 @@ from reference.reference_manager import ReferenceManager
 
 # Ref: https://python-telegram-bot.readthedocs.io/en/stable/telegram.inlinequery.html
 class InlineQueryManager:
-
     def __init__(self, bot, update):
         self.bot = bot
         self.inline_query = update.inline_query
