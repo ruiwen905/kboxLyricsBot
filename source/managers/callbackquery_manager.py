@@ -1,4 +1,4 @@
-from lyrics.lyrics_manager import LyricsManager
+from reference.reference_manager import ReferenceManager
 
 
 # Ref: https://python-telegram-bot.readthedocs.io/en/stable/telegram.callbackquery.html#CallbackQuery.data
@@ -8,7 +8,7 @@ class CallbackQueryManager:
     TOP_SONGS = "Top-songs"
 
     def __init__(self, bot, update):
-        self.lyrics_manager = LyricsManager()
+        self.lyrics_manager = ReferenceManager()
         self.bot = bot
         self.callback_query = update.callback_query
 
